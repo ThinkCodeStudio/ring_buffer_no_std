@@ -1,7 +1,3 @@
-# ring_buffer_no_std
-
-example:
-```rust
 use ring_buffer_no_std::RingBuffer;
 
 fn main() {
@@ -27,5 +23,3 @@ fn main() {
 
     println!("is empty={}", rb.is_empty());
 }
-
-```
