@@ -1,8 +1,9 @@
 [package]
 name = "ring_buffer_no_std"
 description = "A ring buffer supporting no_std"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
+keywords = ["no_std"]
 license-file = "LICENSE"
 
 [dependencies]

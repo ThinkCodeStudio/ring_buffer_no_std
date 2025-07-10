@@ -1,5 +1,11 @@
 #![no_std]
 
+
+#[derive(Debug)]
+pub enum RingBufferError {
+    Full,
+}
+
 pub struct RingBuffer<T, const S: usize>
 where
     T: Default + Copy,
@@ -37,9 +43,9 @@ where
      * rb.push(42).unwrap();
      * ```
      */
-    pub fn push(&mut self, item: T) -> Result<(), &'static str> {
+    pub fn push(&mut self, item: T) -> Result<(), RingBufferError> {
         if self.len == S {
-            return Err("Buffer is full");
+            return Err(RingBufferError::Full);
         }
         self.buffer[self.head] = item;
         self.head = (self.head + 1) % S;
@@ -97,7 +103,7 @@ where
      * rb.write(&[1, 2, 3, 4]).unwrap();
      * ``` 
      */
-    pub fn write(&mut self, data: &[T]) -> Result<(), &'static str> {
+    pub fn write(&mut self, data: &[T]) -> Result<(), RingBufferError> {
         for &item in data {
             self.push(item)?;
         }
