@@ -237,7 +237,7 @@ where
      * assert_eq!(slice, &[1, 2]);
      * ```  
      */
-    pub fn read_slice(&self, len: usize) -> Result<&[T], RingBufferError> {
+    pub fn read_slice<'a>(&'a self, len: usize) -> Result<&'a [T], RingBufferError> {
         if len > self.len {
             return Err(RingBufferError::BeyondRange);
         }
